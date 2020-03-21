@@ -905,7 +905,7 @@ module.exports = "/images/cross.svg?d964bedce1c7d206b5db0b68702a3499";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/cross1.svg?0fefcef690df2c7933be9de96c65c2d9";
+module.exports = "/images/cross1.svg?855fe85e7e5c22f8224abc47d79e2da2";
 
 /***/ }),
 

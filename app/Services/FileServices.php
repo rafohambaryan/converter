@@ -47,7 +47,7 @@ class FileServices
             return response()->json(['success' => 'error', 'message' => $valid]);
         }
         $file = $request->file('file');
-        $name = time() . '.' . $file->getClientOriginalExtension();
+        $name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . time() . '.' . $file->getClientOriginalExtension();
         $file->move(public_path('uploads'), $name);
         File::create([
             'name' => $name
