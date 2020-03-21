@@ -9,4 +9,9 @@ class File extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function getConvert()
+    {
+        return $this->hasMany(Convert::class, 'file_id', 'id');
+    }
 }

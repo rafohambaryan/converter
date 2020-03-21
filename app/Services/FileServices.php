@@ -78,6 +78,12 @@ class FileServices
     {
         $file = File::find($id);
         if ($file) {
+            if ($file->getConvert) {
+                foreach ($file->getConvert as $index => $item) {
+                    unlink(public_path($item->path));
+                }
+            }
+            unlink(public_path('uploads/' . $file->name));
             $file->delete();
         }
         return response()->json(['success' => 'delete'], 200);
@@ -91,8 +97,21 @@ class FileServices
     public function update($data, $id)
     {
         $path = (File::find($id))->name;
-        $this->service->saveFile($path, $data->input('format'), json_encode($data->input('file')));
+        $this->service->saveFile($path, $data->input('format'), $data->input('file'));
+        $this->updateRemoveConverter($id);
         return response()->json(['success' => 'save'], 200);
+    }
+
+    public function updateRemoveConverter($id)
+    {
+        $converter = File::find($id);
+        if ($converter->getConvert) {
+            foreach ($converter->getConvert as $index => $item) {
+                unlink(public_path($item->path));
+                Convert::find($item->id)->delete();
+            }
+        }
+
     }
 
     /**
