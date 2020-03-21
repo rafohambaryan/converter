@@ -61,6 +61,10 @@
             deleteCard(id,index){
                 this.deleteFile(id);
                 this.createPost(index);
+                this.message ='фэйл удалён'
+                setTimeout(()=>{
+                    this.message ='';
+                },1000)
             },
             download(id){
                 window.scrollTo(0,0)

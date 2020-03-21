@@ -160,8 +160,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return fileName;
     },
     deleteCard: function deleteCard(id, index) {
+      var _this2 = this;
+
       this.deleteFile(id);
       this.createPost(index);
+      this.message = 'фэйл удалён';
+      setTimeout(function () {
+        _this2.message = '';
+      }, 1000);
     },
     download: function download(id) {
       window.scrollTo(0, 0);
@@ -174,11 +180,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.activeFormat = value;
     },
     errorMessage: function errorMessage(value) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.message = value;
       setTimeout(function () {
-        _this2.message = '';
+        _this3.message = '';
       }, 1000);
     },
     change: function change(id) {
