@@ -15,7 +15,6 @@ export  default {
     },
     actions: {
         async fileUpload(ctx,data){
-            console.log(data)
             try{
                 const file = await axios.post(window.location.origin+'/api/file', data)
                 return  file;
@@ -53,17 +52,14 @@ export  default {
         async getFile(ctx,id){
             try {
                 const file = await axios.get(`${window.location.origin}/api/file/${id}`);
-                console.log(file.data.file,"ggg")
                 ctx.commit('fileData',file.data)
             } catch (error) {
                 throw  error
             }
         },
         async chenge(ctx,data){
-            console.log(data)
             try {
                 const file = await axios.put(`${window.location.origin}/api/file/${data[0]}`, data[1])
-                console.log(file.data.file, "kk")
                  } catch (error) {
                 throw  error
                 }

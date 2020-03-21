@@ -20269,26 +20269,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(data);
-                _context.prev = 1;
-                _context.next = 4;
+                _context.prev = 0;
+                _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(window.location.origin + '/api/file', data);
 
-              case 4:
+              case 3:
                 file = _context.sent;
                 return _context.abrupt("return", file);
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
                 throw _context.t0;
 
-              case 11:
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 8]]);
+        }, _callee, null, [[0, 7]]);
       }))();
     },
     getFiles: function getFiles(ctx) {
@@ -20393,22 +20392,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 file = _context5.sent;
-                console.log(file.data.file, "ggg");
                 ctx.commit('fileData', file.data);
-                _context5.next = 11;
+                _context5.next = 10;
                 break;
 
-              case 8:
-                _context5.prev = 8;
+              case 7:
+                _context5.prev = 7;
                 _context5.t0 = _context5["catch"](0);
                 throw _context5.t0;
 
-              case 11:
+              case 10:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, null, [[0, 8]]);
+        }, _callee5, null, [[0, 7]]);
       }))();
     },
     chenge: function chenge(ctx, data) {
@@ -20418,28 +20416,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                console.log(data);
-                _context6.prev = 1;
-                _context6.next = 4;
+                _context6.prev = 0;
+                _context6.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(window.location.origin, "/api/file/").concat(data[0]), data[1]);
 
-              case 4:
+              case 3:
                 file = _context6.sent;
-                console.log(file.data.file, "kk");
-                _context6.next = 11;
+                _context6.next = 9;
                 break;
 
-              case 8:
-                _context6.prev = 8;
-                _context6.t0 = _context6["catch"](1);
+              case 6:
+                _context6.prev = 6;
+                _context6.t0 = _context6["catch"](0);
                 throw _context6.t0;
 
-              case 11:
+              case 9:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6, null, [[1, 8]]);
+        }, _callee6, null, [[0, 6]]);
       }))();
     }
   },

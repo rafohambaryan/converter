@@ -34,10 +34,9 @@
             },
             changefile(){
 
-                let data = [this.fileId,{file: this.message, format: this.getfileData.JSon.pare(format)}]
+                let data = [this.fileId,{file: this.message, format: this.getfileData.format}]
                 this.chenge(data)
                     .then((res)=>{
-                        console.log(res);
                         this.$emit('closeChangePopup',false)
                     }).catch(err=>{
                         console.log(err)

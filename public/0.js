@@ -47,11 +47,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var data = [this.fileId, {
         file: this.message,
-        format: this.getfileData.JSon.pare(format)
+        format: this.getfileData.format
       }];
       this.chenge(data).then(function (res) {
-        console.log(res);
-
         _this.$emit('closeChangePopup', false);
       })["catch"](function (err) {
         console.log(err);
@@ -186,7 +184,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     change: function change(id) {
       self = this;
       this.getFile(id).then(function (res) {
-        console.log(res);
         window.scrollTo(0, 0);
         self.cover = true;
         self.fileId = id;
@@ -202,6 +199,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     closeChangePopup: function closeChangePopup() {
       this.cover = false;
       this.changeContent = false;
+      this.getFiles();
     }
   })
 });
@@ -262,12 +260,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.picked != '') {
         var data = [this.fileId, this.picked];
-        console.log(this.fileId, this.picked, "hh");
         this.downloadFile(data).then(function (res) {
-          console.log(res.path);
           var element = document.createElement('a');
-          element.setAttribute('href', 'data:text/plain;charset=utf-8,');
-          element.setAttribute('download', "".concat(window.location.origin, "/").concat(res.path));
+          element.setAttribute('href', "".concat(window.location.origin).concat(res.path));
+          element.setAttribute('download', "".concat(window.location.origin).concat(res.path));
           element.style.display = 'none';
           document.body.appendChild(element);
           element.click();
@@ -283,6 +279,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     close: function close() {
       this.$emit('closePopup', false);
+    },
+    getUserDocs: function getUserDocs(pahe) {
+      return "".concat(window.location.origin, "/").concat(pahe);
     }
   })
 });

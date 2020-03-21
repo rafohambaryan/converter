@@ -36,19 +36,18 @@
             ...mapActions(['downloadFile']),
             download(){
                 if(this.picked != ''){
-                let data = [this.fileId,this.picked]
-                console.log(this.fileId,this.picked,"hh")
+                let data = [this.fileId,this.picked];
                 this.downloadFile(data)
                     .then((res)=>{
-                        console.log(res.path)
-                        let element = document.createElement('a');
-                        element.setAttribute('href', 'data:text/plain;charset=utf-8,');
-                        element.setAttribute('download',`${window.location.origin}/${res.path}`);
+                       let element = document.createElement('a');
+                        element.setAttribute('href', `${window.location.origin}${res.path}`);
+                        element.setAttribute('download',`${window.location.origin}${res.path}`);
                         element.style.display = 'none';
                         document.body.appendChild(element);
                         element.click();
                         document.body.removeChild(element);
                         this.$emit('closePopup',false)
+
                     }).catch((error)=>{
                         console.log(error)
                 })}else{
@@ -58,7 +57,10 @@
             },
             close(){
                 this.$emit('closePopup',false)
-            }
+            },
+            getUserDocs: function (pahe) {
+                return `${window.location.origin}/${pahe}`
+            },
 
         }
     }

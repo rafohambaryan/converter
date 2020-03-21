@@ -82,7 +82,6 @@
                 self = this;
                 this.getFile(id)
                     .then((res)=>{
-                        console.log(res)
                         window.scrollTo(0,0);
                         self.cover = true;
                         self.fileId = id;
@@ -99,6 +98,7 @@
             closeChangePopup() {
                 this.cover = false;
                 this.changeContent = false;
+                this.getFiles()
 
             }
 
