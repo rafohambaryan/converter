@@ -1,10 +1,10 @@
 <template>
     <div class="changeContent">
         <div @click="closeChange()" class="closePopup" >
-            <img src="../../assetc/img/cross.svg" alt="">
+            <img src="../../assetc/img/cross1.svg" alt="">
         </div>
-        <textarea>{{getfileData =="[]"? '': getfileData}}</textarea>
-        <button>Изменять</button>
+        <textarea v-model="message"></textarea>
+        <button @click="changefile()">Изменять</button>
 
     </div>
 </template>
@@ -12,16 +12,36 @@
     import {mapActions, mapGetters} from 'vuex'
     export default {
         name: "changeFile",
-        components: {},
-        props: [],
-        computed: mapGetters(['getfileData']),
+        components: {
+
+        },
+        props: ['fileId'],
+        computed: {
+            ...mapGetters(['getfileData']),
+
+        },
         data() {
             return {
             }
         },
+        created(){
+            this.message  = this.getfileData.file
+        },
         methods: {
+            ...mapActions(['chenge']),
             closeChange(){
                     this.$emit('closeChange',false)
+            },
+            changefile(){
+
+                let data = [this.fileId,{file: this.message, format: this.getfileData.JSon.pare(format)}]
+                this.chenge(data)
+                    .then((res)=>{
+                        console.log(res);
+                        this.$emit('closeChangePopup',false)
+                    }).catch(err=>{
+                        console.log(err)
+                })
             }
 
         }
@@ -63,10 +83,17 @@
             margin-top: 17px;
             height: 40px;
             color: white;
-            background-color: #336ff0;
             border: none;
             border-radius: 20px;
             cursor: pointer;
+            border: 1px solid rgb(51, 111, 240);
+            background-color: rgb(51, 111, 240);
+            &:hover{
+                cursor: pointer;
+                color: rgb(51, 111, 240);
+                background-color:  white;
+                transition: all ease-in-out .3s;
+            }
         }
     }
 

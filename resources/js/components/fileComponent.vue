@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="card-main">
-            <message v-if = "message" :message="message" class="massage"></message>
-            <changeFile v-if="changeContent"  @closeChange="closeChange"></changeFile>
+            <message v-if = "message" :message="message" class="massage" :fileId="fileId"></message>
+            <changeFile v-if="changeContent" :fileId="fileId" @closeChangePopup="closeChangePopup"  @closeChange="closeChange"></changeFile>
             <format v-if="activeFormat" :fileId="fileId" @closePopup="closePopup" @errorMessage="errorMessage"></format>
             <div  v-for="(file,key) of allFilse" :key="key" class="card">
                 <div @click="deleteCard(file.id,key)" class="deletFile" >
@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-button">
                     <button type="submit" @click="download(file.id)">скачать</button>
-                    <button type="submit" @click="change(file.id)">Изменять</button>
+                    <button class="change" type="submit" @click="change(file.id)">Изменять</button>
                 </div>
             </div>
         </div>
@@ -79,19 +79,27 @@
                 },1000)
             },
             change(id){
+                self = this;
                 this.getFile(id)
-                    .then(()=>{
-                        window.scrollTo(0,0)
-                        this.cover = true;
-                        this.changeContent = true;
+                    .then((res)=>{
+                        console.log(res)
+                        window.scrollTo(0,0);
+                        self.cover = true;
+                        self.fileId = id;
+                        self.changeContent = true;
                     }).catch((error)=>{
                         console.log(error)
                     })
+
             },
             closeChange(value){
-                console.log(value,"ddddd")
                 this.cover = value;
                 this.changeContent = value;
+            },
+            closeChangePopup() {
+                this.cover = false;
+                this.changeContent = false;
+
             }
 
         }
@@ -166,13 +174,24 @@
                     border-width: 0px;
                     color: white;
                     height: 40px;
-                    background-color: rgb(51, 111, 240);
+                    border: 1px solid #14a37d;
+                    background-color: rgb(20, 163, 125);
                     transition: all ease-in-out .3s;
                     margin-right: 7px;
                     &:hover{
                         cursor: pointer;
-                        color: white;
-                        background-color:  rgb(102, 144, 235);
+                        color: rgb(20, 163, 125);
+                        background-color:  white;
+                        transition: all ease-in-out .3s;
+                    }
+                }
+                .change{
+                    border: 1px solid rgb(51, 111, 240);
+                    background-color: rgb(51, 111, 240);
+                    &:hover{
+                        cursor: pointer;
+                        color: rgb(51, 111, 240);
+                        background-color:  white;
                         transition: all ease-in-out .3s;
                     }
                 }

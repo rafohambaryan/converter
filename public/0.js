@@ -10,6 +10,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -24,16 +30,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "changeFile",
   components: {},
-  props: [],
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['getfileData']),
+  props: ['fileId'],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['getfileData'])),
   data: function data() {
     return {};
   },
-  methods: {
+  created: function created() {
+    this.message = this.getfileData.file;
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['chenge']), {
     closeChange: function closeChange() {
       this.$emit('closeChange', false);
+    },
+    changefile: function changefile() {
+      var _this = this;
+
+      var data = [this.fileId, {
+        file: this.message,
+        format: this.getfileData.JSon.pare(format)
+      }];
+      this.chenge(data).then(function (res) {
+        console.log(res);
+
+        _this.$emit('closeChangePopup', false);
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -160,20 +184,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, 1000);
     },
     change: function change(id) {
-      var _this3 = this;
-
-      this.getFile(id).then(function () {
+      self = this;
+      this.getFile(id).then(function (res) {
+        console.log(res);
         window.scrollTo(0, 0);
-        _this3.cover = true;
-        _this3.changeContent = true;
+        self.cover = true;
+        self.fileId = id;
+        self.changeContent = true;
       })["catch"](function (error) {
         console.log(error);
       });
     },
     closeChange: function closeChange(value) {
-      console.log(value, "ddddd");
       this.cover = value;
       this.changeContent = value;
+    },
+    closeChangePopup: function closeChangePopup() {
+      this.cover = false;
+      this.changeContent = false;
     }
   })
 });
@@ -304,7 +332,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".changeContent[data-v-87343ad4] {\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  border-radius: 15px;\n  padding: 20px 30px;\n  margin: 20px 5px;\n  position: absolute;\n  z-index: 5;\n}\n.changeContent .closePopup[data-v-87343ad4] {\n  position: absolute;\n  right: 15px;\n  cursor: pointer;\n}\n.changeContent .closePopup img[data-v-87343ad4] {\n  width: 20px;\n}\n.changeContent textarea[data-v-87343ad4] {\n  height: 253px;\n  width: 823px;\n  border-radius: 4px;\n  margin: 8px 0px 0px;\n  border: 1px solid #dce3ea;\n  padding: 20px;\n  font-size: 14px;\n  line-height: 24px;\n  resize: vertical;\n  overflow: auto;\n  margin-top: 30px;\n}\n.changeContent button[data-v-87343ad4] {\n  width: 150px;\n  margin-top: 17px;\n  height: 40px;\n  color: white;\n  background-color: #336ff0;\n  border: none;\n  border-radius: 20px;\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, ".changeContent[data-v-87343ad4] {\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  border-radius: 15px;\n  padding: 20px 30px;\n  margin: 20px 5px;\n  position: absolute;\n  z-index: 5;\n}\n.changeContent .closePopup[data-v-87343ad4] {\n  position: absolute;\n  right: 15px;\n  cursor: pointer;\n}\n.changeContent .closePopup img[data-v-87343ad4] {\n  width: 20px;\n}\n.changeContent textarea[data-v-87343ad4] {\n  height: 253px;\n  width: 823px;\n  border-radius: 4px;\n  margin: 8px 0px 0px;\n  border: 1px solid #dce3ea;\n  padding: 20px;\n  font-size: 14px;\n  line-height: 24px;\n  resize: vertical;\n  overflow: auto;\n  margin-top: 30px;\n}\n.changeContent button[data-v-87343ad4] {\n  width: 150px;\n  margin-top: 17px;\n  height: 40px;\n  color: white;\n  border: none;\n  border-radius: 20px;\n  cursor: pointer;\n  border: 1px solid #336ff0;\n  background-color: #336ff0;\n}\n.changeContent button[data-v-87343ad4]:hover {\n  cursor: pointer;\n  color: #336ff0;\n  background-color: white;\n  transition: all ease-in-out 0.3s;\n}", ""]);
 
 // exports
 
@@ -323,7 +351,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".massage[data-v-48cf3626] {\n  position: absolute;\n  z-index: 10;\n  width: 220px;\n}\n.cover[data-v-48cf3626] {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  background: rgba(0, 0, 0, 0.5);\n  top: 0;\n}\n.card-main[data-v-48cf3626] {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  padding: 20px;\n  position: relative;\n}\n.card-main .card[data-v-48cf3626] {\n  width: 240px;\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  border-radius: 15px;\n  padding: 20px 30px;\n  margin: 20px 5px;\n  position: relative;\n}\n.card-main .card .deletFile[data-v-48cf3626] {\n  position: absolute;\n  right: 20px;\n  cursor: pointer;\n}\n.card-main .card .deletFile img[data-v-48cf3626] {\n  width: 20px;\n}\n.card-main .card .card-image[data-v-48cf3626] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.card-main .card .card-description h4[data-v-48cf3626] {\n  color: #272727;\n  font-size: 17px;\n  padding-top: 10px;\n  margin: 0px;\n}\n.card-main .card .card-description p[data-v-48cf3626] {\n  color: #646464;\n  font-size: 13px;\n  padding-top: 8px;\n  margin: 0px;\n}\n.card-main .card .card-button[data-v-48cf3626] {\n  width: 100%;\n  margin-bottom: 5px;\n  border-radius: 50px;\n}\n.card-main .card .card-button button[data-v-48cf3626] {\n  margin-top: 20px;\n  border-radius: 50px;\n  width: 110px;\n  border-width: 0px;\n  color: white;\n  height: 40px;\n  background-color: #336ff0;\n  transition: all ease-in-out 0.3s;\n  margin-right: 7px;\n}\n.card-main .card .card-button button[data-v-48cf3626]:hover {\n  cursor: pointer;\n  color: white;\n  background-color: #6690eb;\n  transition: all ease-in-out 0.3s;\n}", ""]);
+exports.push([module.i, ".massage[data-v-48cf3626] {\n  position: absolute;\n  z-index: 10;\n  width: 220px;\n}\n.cover[data-v-48cf3626] {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  background: rgba(0, 0, 0, 0.5);\n  top: 0;\n}\n.card-main[data-v-48cf3626] {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-evenly;\n  padding: 20px;\n  position: relative;\n}\n.card-main .card[data-v-48cf3626] {\n  width: 240px;\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  border-radius: 15px;\n  padding: 20px 30px;\n  margin: 20px 5px;\n  position: relative;\n}\n.card-main .card .deletFile[data-v-48cf3626] {\n  position: absolute;\n  right: 20px;\n  cursor: pointer;\n}\n.card-main .card .deletFile img[data-v-48cf3626] {\n  width: 20px;\n}\n.card-main .card .card-image[data-v-48cf3626] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.card-main .card .card-description h4[data-v-48cf3626] {\n  color: #272727;\n  font-size: 17px;\n  padding-top: 10px;\n  margin: 0px;\n}\n.card-main .card .card-description p[data-v-48cf3626] {\n  color: #646464;\n  font-size: 13px;\n  padding-top: 8px;\n  margin: 0px;\n}\n.card-main .card .card-button[data-v-48cf3626] {\n  width: 100%;\n  margin-bottom: 5px;\n  border-radius: 50px;\n}\n.card-main .card .card-button button[data-v-48cf3626] {\n  margin-top: 20px;\n  border-radius: 50px;\n  width: 110px;\n  border-width: 0px;\n  color: white;\n  height: 40px;\n  border: 1px solid #14a37d;\n  background-color: #14a37d;\n  transition: all ease-in-out 0.3s;\n  margin-right: 7px;\n}\n.card-main .card .card-button button[data-v-48cf3626]:hover {\n  cursor: pointer;\n  color: #14a37d;\n  background-color: white;\n  transition: all ease-in-out 0.3s;\n}\n.card-main .card .card-button .change[data-v-48cf3626] {\n  border: 1px solid #336ff0;\n  background-color: #336ff0;\n}\n.card-main .card .card-button .change[data-v-48cf3626]:hover {\n  cursor: pointer;\n  color: #336ff0;\n  background-color: white;\n  transition: all ease-in-out 0.3s;\n}", ""]);
 
 // exports
 
@@ -342,7 +370,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".closePopup[data-v-fac6876a] {\n  position: absolute;\n  right: 20px;\n  cursor: pointer;\n}\n.closePopup img[data-v-fac6876a] {\n  width: 20px;\n}\n.popupFormat[data-v-fac6876a] {\n  position: absolute;\n  z-index: 5;\n  background: white;\n  padding: 25px;\n  width: 160px;\n  border-radius: 25px;\n  top: 30%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.popupFormat .radio[data-v-fac6876a] {\n  margin: 16px 0;\n  display: block;\n  cursor: pointer;\n  width: 60px;\n}\n.popupFormat .radio input[data-v-fac6876a] {\n  display: none;\n}\n.popupFormat .radio input + span[data-v-fac6876a] {\n  line-height: 22px;\n  height: 22px;\n  padding-left: 22px;\n  display: block;\n  position: relative;\n}\n.popupFormat .radio input + span[data-v-fac6876a]:not(:empty) {\n  padding-left: 30px;\n}\n.popupFormat .radio input + span[data-v-fac6876a]:before, .popupFormat .radio input + span[data-v-fac6876a]:after {\n  content: \"\";\n  width: 22px;\n  height: 22px;\n  display: block;\n  border-radius: 50%;\n  left: 0;\n  top: 0;\n  position: absolute;\n}\n.popupFormat .radio input + span[data-v-fac6876a]:before {\n  background: #D1D7E3;\n  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);\n}\n.popupFormat .radio input + span[data-v-fac6876a]:after {\n  background: #fff;\n  transform: scale(0.78);\n  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);\n}\n.popupFormat .radio input:checked + span[data-v-fac6876a]:before {\n  transform: scale(1.04);\n  background: #5D9BFB;\n}\n.popupFormat .radio input:checked + span[data-v-fac6876a]:after {\n  transform: scale(0.4);\n  transition: transform 0.3s ease;\n}\n.popupFormat .radio:hover input + span[data-v-fac6876a]:before {\n  transform: scale(0.92);\n}\n.popupFormat .radio:hover input + span[data-v-fac6876a]:after {\n  transform: scale(0.74);\n}\n.popupFormat .radio:hover input:checked + span[data-v-fac6876a]:after {\n  transform: scale(0.4);\n}\n.popupFormat > div[data-v-fac6876a]:nth-child(3) {\n  background-color: #336ff0;\n  transition: all ease-in-out 0.3s;\n  cursor: pointer;\n  color: white;\n  margin-top: 20px;\n  border-radius: 50px;\n  width: 110px;\n  border-width: 0px;\n  height: 40px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}", ""]);
+exports.push([module.i, ".closePopup[data-v-fac6876a] {\n  position: absolute;\n  right: 20px;\n  cursor: pointer;\n}\n.closePopup img[data-v-fac6876a] {\n  width: 20px;\n}\n.popupFormat[data-v-fac6876a] {\n  position: absolute;\n  z-index: 5;\n  background: white;\n  padding: 25px;\n  width: 160px;\n  border-radius: 25px;\n  top: 250px;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.popupFormat .radio[data-v-fac6876a] {\n  margin: 16px 0;\n  display: block;\n  cursor: pointer;\n  width: 60px;\n}\n.popupFormat .radio input[data-v-fac6876a] {\n  display: none;\n}\n.popupFormat .radio input + span[data-v-fac6876a] {\n  line-height: 22px;\n  height: 22px;\n  padding-left: 22px;\n  display: block;\n  position: relative;\n}\n.popupFormat .radio input + span[data-v-fac6876a]:not(:empty) {\n  padding-left: 30px;\n}\n.popupFormat .radio input + span[data-v-fac6876a]:before, .popupFormat .radio input + span[data-v-fac6876a]:after {\n  content: \"\";\n  width: 22px;\n  height: 22px;\n  display: block;\n  border-radius: 50%;\n  left: 0;\n  top: 0;\n  position: absolute;\n}\n.popupFormat .radio input + span[data-v-fac6876a]:before {\n  background: #D1D7E3;\n  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);\n}\n.popupFormat .radio input + span[data-v-fac6876a]:after {\n  background: #fff;\n  transform: scale(0.78);\n  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);\n}\n.popupFormat .radio input:checked + span[data-v-fac6876a]:before {\n  transform: scale(1.04);\n  background: #5D9BFB;\n}\n.popupFormat .radio input:checked + span[data-v-fac6876a]:after {\n  transform: scale(0.4);\n  transition: transform 0.3s ease;\n}\n.popupFormat .radio:hover input + span[data-v-fac6876a]:before {\n  transform: scale(0.92);\n}\n.popupFormat .radio:hover input + span[data-v-fac6876a]:after {\n  transform: scale(0.74);\n}\n.popupFormat .radio:hover input:checked + span[data-v-fac6876a]:after {\n  transform: scale(0.4);\n}\n.popupFormat > div[data-v-fac6876a]:nth-child(3) {\n  margin-top: 20px;\n  border-radius: 50px;\n  width: 110px;\n  border-width: 0px;\n  color: white;\n  height: 40px;\n  border: 1px solid #14a37d;\n  background-color: #14a37d;\n  transition: all ease-in-out 0.3s;\n  margin-right: 7px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.popupFormat > div[data-v-fac6876a]:nth-child(3):hover {\n  cursor: pointer;\n  color: #14a37d;\n  background-color: white;\n  transition: all ease-in-out 0.3s;\n}", ""]);
 
 // exports
 
@@ -516,16 +544,42 @@ var render = function() {
       },
       [
         _c("img", {
-          attrs: { src: __webpack_require__(/*! ../../assetc/img/cross.svg */ "./resources/assetc/img/cross.svg"), alt: "" }
+          attrs: { src: __webpack_require__(/*! ../../assetc/img/cross1.svg */ "./resources/assetc/img/cross1.svg"), alt: "" }
         })
       ]
     ),
     _vm._v(" "),
-    _c("textarea", [
-      _vm._v(_vm._s(_vm.getfileData == "[]" ? "" : _vm.getfileData))
-    ]),
+    _c("textarea", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.message,
+          expression: "message"
+        }
+      ],
+      domProps: { value: _vm.message },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.message = $event.target.value
+        }
+      }
+    }),
     _vm._v(" "),
-    _c("button", [_vm._v("Изменять")])
+    _c(
+      "button",
+      {
+        on: {
+          click: function($event) {
+            return _vm.changefile()
+          }
+        }
+      },
+      [_vm._v("Изменять")]
+    )
   ])
 }
 var staticRenderFns = []
@@ -558,12 +612,18 @@ var render = function() {
         _vm.message
           ? _c("message", {
               staticClass: "massage",
-              attrs: { message: _vm.message }
+              attrs: { message: _vm.message, fileId: _vm.fileId }
             })
           : _vm._e(),
         _vm._v(" "),
         _vm.changeContent
-          ? _c("changeFile", { on: { closeChange: _vm.closeChange } })
+          ? _c("changeFile", {
+              attrs: { fileId: _vm.fileId },
+              on: {
+                closeChangePopup: _vm.closeChangePopup,
+                closeChange: _vm.closeChange
+              }
+            })
           : _vm._e(),
         _vm._v(" "),
         _vm.activeFormat
@@ -636,6 +696,7 @@ var render = function() {
               _c(
                 "button",
                 {
+                  staticClass: "change",
                   attrs: { type: "submit" },
                   on: {
                     click: function($event) {
@@ -690,7 +751,7 @@ var render = function() {
       },
       [
         _c("img", {
-          attrs: { src: __webpack_require__(/*! ../../assetc/img/cross.svg */ "./resources/assetc/img/cross.svg"), alt: "" }
+          attrs: { src: __webpack_require__(/*! ../../assetc/img/cross1.svg */ "./resources/assetc/img/cross1.svg"), alt: "" }
         })
       ]
     ),
@@ -829,6 +890,17 @@ render._withStripped = true
 /***/ (function(module, exports) {
 
 module.exports = "/images/cross.svg?d964bedce1c7d206b5db0b68702a3499";
+
+/***/ }),
+
+/***/ "./resources/assetc/img/cross1.svg":
+/*!*****************************************!*\
+  !*** ./resources/assetc/img/cross1.svg ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/cross1.svg?0fefcef690df2c7933be9de96c65c2d9";
 
 /***/ }),
 

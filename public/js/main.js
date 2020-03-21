@@ -20269,25 +20269,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
+                console.log(data);
+                _context.prev = 1;
+                _context.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(window.location.origin + '/api/file', data);
 
-              case 3:
+              case 4:
                 file = _context.sent;
                 return _context.abrupt("return", file);
 
-              case 7:
-                _context.prev = 7;
-                _context.t0 = _context["catch"](0);
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](1);
                 throw _context.t0;
 
-              case 10:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee, null, [[1, 8]]);
       }))();
     },
     getFiles: function getFiles(ctx) {
@@ -20393,7 +20394,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 file = _context5.sent;
                 console.log(file.data.file, "ggg");
-                ctx.commit('fileData', file.data.file);
+                ctx.commit('fileData', file.data);
                 _context5.next = 11;
                 break;
 
@@ -20408,6 +20409,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee5, null, [[0, 8]]);
+      }))();
+    },
+    chenge: function chenge(ctx, data) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var file;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                console.log(data);
+                _context6.prev = 1;
+                _context6.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(window.location.origin, "/api/file/").concat(data[0]), data[1]);
+
+              case 4:
+                file = _context6.sent;
+                console.log(file.data.file, "kk");
+                _context6.next = 11;
+                break;
+
+              case 8:
+                _context6.prev = 8;
+                _context6.t0 = _context6["catch"](1);
+                throw _context6.t0;
+
+              case 11:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[1, 8]]);
       }))();
     }
   },

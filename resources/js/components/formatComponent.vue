@@ -1,7 +1,7 @@
 <template>
     <div class="popupFormat">
         <div @click="close()" class="closePopup" >
-            <img src="../../assetc/img/cross.svg" alt="">
+            <img src="../../assetc/img/cross1.svg" alt="">
         </div>
         <div>
             <label class="radio">
@@ -82,7 +82,7 @@
     padding: 25px;
     width: 160px;
     border-radius: 25px;
-    top: 30%;
+    top: 250px;
     left: 50%;
     transform: translate(-50%,-50%);
     .radio {
@@ -152,18 +152,25 @@
         }
     }
     > div:nth-child(3){
-        background-color: #336ff0;
-        transition: all ease-in-out 0.3s;
-        cursor: pointer;
-        color: white;
         margin-top: 20px;
         border-radius: 50px;
         width: 110px;
         border-width: 0px;
+        color: white;
         height: 40px;
+        border: 1px solid #14a37d;
+        background-color: rgb(20, 163, 125);
+        transition: all ease-in-out .3s;
+        margin-right: 7px;
         display: flex;
         align-items: center;
         justify-content: center;
+        &:hover{
+            cursor: pointer;
+            color: rgb(20, 163, 125);
+            background-color:  white;
+            transition: all ease-in-out .3s;
+        }
     }
 }
 </style>
