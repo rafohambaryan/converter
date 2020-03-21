@@ -1,40 +1,10 @@
-export default {
+import  Vue from 'vue'
+import Vuex from 'vuex'
+import fillUploads from './modules/fileUploads'
+Vue.use(Vuex);
 
-    state: {
-
-        file: []
-
-    },
-
-    getters: {
-
-        getFilesFormGetters(state) { //take parameter state
-
-            return state.file
-        }
-    },
-
-    actions: {
-        allFilesFromDatabase(context) {
-
-            axios.get("api/file")
-
-                .then((response) => {
-                    context.commit("file", response.data.file) //categories will be run from mutation
-
-                })
-
-                .catch(() => {
-
-                    console.log("Error..")
-
-                })
-        }
-    },
-
-    mutations: {
-        file(state, data) {
-            return state.file = data
-        }
+export  default new Vuex.Store({
+    modules:{
+        fillUploads
     }
-}
+})
