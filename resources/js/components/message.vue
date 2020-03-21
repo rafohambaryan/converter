@@ -30,8 +30,9 @@
         border-radius: 0.25rem;
         height: 60px;
         position: absolute;
-        width: 100%;
+        width: 422px;
         bottom: -100px;
+        right: 29px;
         display: flex;
         align-items: center;
         justify-content: center;

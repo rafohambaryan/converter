@@ -1,6 +1,6 @@
 <template>
     <section class="content">
-        <message v-if="message" :message="message"></message>
+        <message v-if="message" :message="message" class="mess"></message>
         <div class="upload">
             <div class="upload-files">
                 <header>
@@ -70,7 +70,7 @@
                         .catch(function (error) {
                            self.message = 'Что-то пошло не так';
                             setTimeout(() => {
-                                self.message = '';
+                                 self.message = '';
                             }, 2000)
                         });
                 } else {

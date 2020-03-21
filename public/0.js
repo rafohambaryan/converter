@@ -388,7 +388,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".messageContent[data-v-4009260c] {\n  background-color: #fd7570 !important;\n  border: 1px solid rgba(0, 0, 0, 0.125);\n  border-radius: 0.25rem;\n  height: 60px;\n  position: absolute;\n  width: 100%;\n  bottom: -100px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.messageContent h5[data-v-4009260c] {\n  font-size: 20px;\n  color: white;\n  margin: 0;\n}", ""]);
+exports.push([module.i, ".messageContent[data-v-4009260c] {\n  background-color: #fd7570 !important;\n  border: 1px solid rgba(0, 0, 0, 0.125);\n  border-radius: 0.25rem;\n  height: 60px;\n  position: absolute;\n  width: 422px;\n  bottom: -100px;\n  right: 29px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.messageContent h5[data-v-4009260c] {\n  font-size: 20px;\n  color: white;\n  margin: 0;\n}", ""]);
 
 // exports
 
