@@ -1,6 +1,6 @@
 <template>
     <div class="changeContent">
-        <div  class="closePopup" >
+        <div @click="closeChange()" class="closePopup" >
             <img src="../../assetc/img/cross.svg" alt="">
         </div>
         <textarea>{{getfileData =="[]"? '': getfileData}}</textarea>
@@ -20,7 +20,9 @@
             }
         },
         methods: {
-
+            closeChange(){
+                    this.$emit('closeChange',false)
+            }
 
         }
     }
@@ -38,6 +40,7 @@
         .closePopup{
             position: absolute;
             right: 15px;
+            cursor: pointer;
             img{
                 width: 20px;
             }

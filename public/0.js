@@ -29,7 +29,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  methods: {}
+  methods: {
+    closeChange: function closeChange() {
+      this.$emit('closeChange', false);
+    }
+  }
 });
 
 /***/ }),
@@ -165,6 +169,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    closeChange: function closeChange(value) {
+      console.log(value, "ddddd");
+      this.cover = value;
+      this.changeContent = value;
     }
   })
 });
@@ -295,7 +304,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".changeContent[data-v-87343ad4] {\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  border-radius: 15px;\n  padding: 20px 30px;\n  margin: 20px 5px;\n  position: absolute;\n  z-index: 5;\n}\n.changeContent .closePopup[data-v-87343ad4] {\n  position: absolute;\n  right: 15px;\n}\n.changeContent .closePopup img[data-v-87343ad4] {\n  width: 20px;\n}\n.changeContent textarea[data-v-87343ad4] {\n  height: 253px;\n  width: 823px;\n  border-radius: 4px;\n  margin: 8px 0px 0px;\n  border: 1px solid #dce3ea;\n  padding: 20px;\n  font-size: 14px;\n  line-height: 24px;\n  resize: vertical;\n  overflow: auto;\n  margin-top: 30px;\n}\n.changeContent button[data-v-87343ad4] {\n  width: 150px;\n  margin-top: 17px;\n  height: 40px;\n  color: white;\n  background-color: #336ff0;\n  border: none;\n  border-radius: 20px;\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, ".changeContent[data-v-87343ad4] {\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  border-radius: 15px;\n  padding: 20px 30px;\n  margin: 20px 5px;\n  position: absolute;\n  z-index: 5;\n}\n.changeContent .closePopup[data-v-87343ad4] {\n  position: absolute;\n  right: 15px;\n  cursor: pointer;\n}\n.changeContent .closePopup img[data-v-87343ad4] {\n  width: 20px;\n}\n.changeContent textarea[data-v-87343ad4] {\n  height: 253px;\n  width: 823px;\n  border-radius: 4px;\n  margin: 8px 0px 0px;\n  border: 1px solid #dce3ea;\n  padding: 20px;\n  font-size: 14px;\n  line-height: 24px;\n  resize: vertical;\n  overflow: auto;\n  margin-top: 30px;\n}\n.changeContent button[data-v-87343ad4] {\n  width: 150px;\n  margin-top: 17px;\n  height: 40px;\n  color: white;\n  background-color: #336ff0;\n  border: none;\n  border-radius: 20px;\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -495,7 +504,22 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "changeContent" }, [
-    _vm._m(0),
+    _c(
+      "div",
+      {
+        staticClass: "closePopup",
+        on: {
+          click: function($event) {
+            return _vm.closeChange()
+          }
+        }
+      },
+      [
+        _c("img", {
+          attrs: { src: __webpack_require__(/*! ../../assetc/img/cross.svg */ "./resources/assetc/img/cross.svg"), alt: "" }
+        })
+      ]
+    ),
     _vm._v(" "),
     _c("textarea", [
       _vm._v(_vm._s(_vm.getfileData == "[]" ? "" : _vm.getfileData))
@@ -504,18 +528,7 @@ var render = function() {
     _c("button", [_vm._v("Изменять")])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "closePopup" }, [
-      _c("img", {
-        attrs: { src: __webpack_require__(/*! ../../assetc/img/cross.svg */ "./resources/assetc/img/cross.svg"), alt: "" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -549,7 +562,9 @@ var render = function() {
             })
           : _vm._e(),
         _vm._v(" "),
-        _vm.changeContent ? _c("changeFile") : _vm._e(),
+        _vm.changeContent
+          ? _c("changeFile", { on: { closeChange: _vm.closeChange } })
+          : _vm._e(),
         _vm._v(" "),
         _vm.activeFormat
           ? _c("format", {

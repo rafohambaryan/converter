@@ -2,7 +2,7 @@
     <div>
         <div class="card-main">
             <message v-if = "message" :message="message" class="massage"></message>
-            <changeFile v-if="changeContent" ></changeFile>
+            <changeFile v-if="changeContent"  @closeChange="closeChange"></changeFile>
             <format v-if="activeFormat" :fileId="fileId" @closePopup="closePopup" @errorMessage="errorMessage"></format>
             <div  v-for="(file,key) of allFilse" :key="key" class="card">
                 <div @click="deleteCard(file.id,key)" class="deletFile" >
@@ -87,6 +87,11 @@
                     }).catch((error)=>{
                         console.log(error)
                     })
+            },
+            closeChange(value){
+                console.log(value,"ddddd")
+                this.cover = value;
+                this.changeContent = value;
             }
 
         }
